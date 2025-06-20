@@ -16,6 +16,10 @@
             --light: #f8f9fa;
             --dark: #343a40;
             --gray: #6c757d;
+            --facebook: #3b5998;
+            --twitter: #1DA1F2;
+            --instagram: #E1306C;
+            --youtube: #FF0000;
         }
         
         * {
@@ -30,6 +34,13 @@
             color: var(--dark);
             background: linear-gradient(to bottom, #f9f4e8, #f5e9d7);
             background-attachment: fixed;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .container {
@@ -48,6 +59,12 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
         }
         
         .header-content {
@@ -145,6 +162,12 @@
             padding: 120px 0;
             text-align: center;
             position: relative;
+            animation: fadeInHero 1.5s ease-out;
+        }
+        
+        @keyframes fadeInHero {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .hero-content {
@@ -225,6 +248,7 @@
         .mpesa-btn:hover {
             background: #008A00;
             transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 179, 0, 0.4);
         }
         
         /* Cultural Pattern Divider */
@@ -257,6 +281,12 @@
             border-radius: 10px;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
         }
         
         .stat-number {
@@ -346,6 +376,75 @@
         }
         
         .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Social Media Section */
+        .social-media {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), #4a0a9c);
+            text-align: center;
+            color: white;
+        }
+        
+        .social-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .social-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            width: 250px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .facebook-card .social-icon { color: var(--facebook); }
+        .twitter-card .social-icon { color: var(--twitter); }
+        .instagram-card .social-icon { color: var(--instagram); }
+        .youtube-card .social-icon { color: var(--youtube); }
+        
+        .social-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        .social-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .social-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--accent);
+            color: white;
             transform: scale(1.05);
         }
         
@@ -447,6 +546,7 @@
             height: 250px;
             position: relative;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .gallery-item img {
@@ -481,6 +581,54 @@
         
         .gallery-item:hover .caption {
             transform: translateY(0);
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            text-align: center;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 80%;
+            margin: 5% auto;
+        }
+        
+        .lightbox img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .lightbox-caption {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close-lightbox:hover {
+            color: var(--accent);
+            transform: scale(1.1);
         }
         
         /* Call to Action */
@@ -573,8 +721,12 @@
             font-size: 1.2rem;
         }
         
+        .social-links a.facebook:hover { background: var(--facebook); }
+        .social-links a.twitter:hover { background: var(--twitter); }
+        .social-links a.instagram:hover { background: var(--instagram); }
+        .social-links a.youtube:hover { background: var(--youtube); }
+        
         .social-links a:hover {
-            background: var(--accent);
             transform: translateY(-5px);
         }
         
@@ -613,15 +765,35 @@
             .section-title h2 {
                 font-size: 2.3rem;
             }
+            
+            .social-cards {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         
         @media (max-width: 768px) {
             nav ul {
                 display: none;
+                position: absolute;
+                top: 80px;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                width: 300px;
+                padding: 20px;
+                border-radius: 0 0 0 10px;
+                box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+            }
+            
+            nav ul.show {
+                display: flex;
             }
             
             .mobile-menu-btn {
                 display: block;
+                z-index: 1001;
             }
             
             .hero {
@@ -650,6 +822,10 @@
             
             .stat-item {
                 width: 80%;
+            }
+            
+            .lightbox-content {
+                margin: 15% auto;
             }
         }
         
@@ -689,14 +865,15 @@
                     </div>
                 </div>
                 <nav>
-                    <ul>
+                    <ul id="navMenu">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#programs">Programs</a></li>
+                        <li><a href="#social">Connect</a></li>
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                    <button class="mobile-menu-btn">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
                         <i class="fas fa-bars"></i>
                     </button>
                 </nav>
@@ -763,6 +940,64 @@
         </div>
     </section>
 
+    <!-- Social Media Section -->
+    <section class="social-media" id="social">
+        <div class="container">
+            <div class="section-title">
+                <h2>Connect With Us</h2>
+                <p style="max-width: 700px; margin: 0 auto; opacity: 0.9; font-size: 1.1rem;">
+                    Follow our journey and stay updated with our latest activities, success stories, and events
+                </p>
+            </div>
+            
+            <div class="social-cards">
+                <div class="social-card facebook-card">
+                    <div class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Follow our page for updates and community stories</p>
+                    <a href="https://facebook.com/espada-africa" class="social-link" target="_blank">
+                        Follow Us
+                    </a>
+                </div>
+                
+                <div class="social-card twitter-card">
+                    <div class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <h3>Twitter</h3>
+                    <p>Join the conversation and stay informed</p>
+                    <a href="https://twitter.com/espada_africa" class="social-link" target="_blank">
+                        Follow Us
+                    </a>
+                </div>
+                
+                <div class="social-card instagram-card">
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>See our work through photos and videos</p>
+                    <a href="https://instagram.com/espada_africa" class="social-link" target="_blank">
+                        Follow Us
+                    </a>
+                </div>
+                
+                <div class="social-card youtube-card">
+                    <div class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>Watch our impact stories and documentaries</p>
+                    <a href="https://youtube.com/espada-africa" class="social-link" target="_blank">
+                        Subscribe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Programs Section -->
     <section class="programs" id="programs">
         <div class="container">
@@ -818,31 +1053,40 @@
             </div>
             <div class="gallery-grid">
                 <!-- Image 1 -->
-                <div class="gallery-item">
-                    <img src="https://blogs.csae.ox.ac.uk/wp-content/uploads/2014/12/Village-meeting.png" alt="ESPADA Community Outreach">
+                <div class="gallery-item" onclick="openLightbox('https://images.pexels.com/photos/8042500/pexels-photo-8042500.jpeg', 'Community Outreach')">
+                    <img src="https://images.pexels.com/photos/8042500/pexels-photo-8042500.jpeg" alt="ESPADA Community Outreach">
                     <div class="caption">Community Outreach</div>
                 </div>
                 
                 <!-- Image 2 -->
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://images.pexels.com/photos/28593054/pexels-photo-28593054.jpeg', 'Children in Bungoma')">
                     <img src="https://images.pexels.com/photos/28593054/pexels-photo-28593054.jpeg" alt="Children in Bungoma">
                     <div class="caption">Children in Bungoma</div>
                 </div>
                 
                 <!-- Image 3 -->
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://shalomconflictcenter.org/wp-content/uploads/2021/03/girl-7-600x371.jpg', 'Education Program')">
                     <img src="https://shalomconflictcenter.org/wp-content/uploads/2021/03/girl-7-600x371.jpg" alt="Education Program">
                     <div class="caption">Education Program</div>
                 </div>
                 
                 <!-- Image 4 -->
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://shalomconflictcenter.org/wp-content/uploads/2021/03/girl-cropped.png', 'Girl Empowerment')">
                     <img src="https://shalomconflictcenter.org/wp-content/uploads/2021/03/girl-cropped.png" alt="Girl Empowerment">
                     <div class="caption">Girl Empowerment</div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
 
     <!-- Call to Action -->
     <section class="cta" id="donate">
@@ -852,7 +1096,7 @@
             <a href="#" class="mpesa-btn" onclick="donateViaMpesa()">
                 <i class="fas fa-mobile-alt"></i> DONATE VIA M-PESA
             </a>
-            <p style="margin-top: 20px; font-size: 0.9rem;">PAYBILL NO:0728821052 • Account: ESPADA</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">PAYBILL NO: 123456 â€¢ Account: ESPADA</p>
         </div>
     </section>
 
@@ -864,10 +1108,10 @@
                     <h3>About ESPADA</h3>
                     <p>ESPADA AFRICA is a community-based organization dedicated to reducing adolescent pregnancy in Bungoma County through education, health services, and community empowerment.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://facebook.com/espada-africa" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/espada_africa" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com/espada_africa" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/espada-africa" class="youtube" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -879,15 +1123,15 @@
                         </li>
                         <li>
                             <i class="fas fa-phone"></i>
-                            <span>+254 728 821052</span>
+                            <a href="tel:+254728821052">+254 728 821052</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>lucykisabuli@yahoo.com</span>
+                            <a href="mailto:lucykisabuli@yahoo.com">lucykisabuli@yahoo.com</a>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>lucykisabuli@gmail.com</span>
+                            <a href="mailto:lucykisabuli@gmail.com">lucykisabuli@gmail.com</a>
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
@@ -923,51 +1167,87 @@
     </footer>
 
     <script>
-        // Simple scroll to anchor
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+        // Mobile menu toggle with improved functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
         
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.querySelector('nav ul');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-            if (navMenu.style.display === 'flex') {
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.position = 'absolute';
-                navMenu.style.top = '70px';
-                navMenu.style.right = '20px';
-                navMenu.style.background = 'var(--primary)';
-                navMenu.style.padding = '20px';
-                navMenu.style.borderRadius = '10px';
-                navMenu.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
-                navMenu.style.gap = '15px';
-            }
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('show');
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav') && navMenu.style.display === 'flex') {
-                navMenu.style.display = 'none';
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                navMenu.classList.remove('show');
             }
         });
         
-        // M-Pesa Donation Function
-       function donateViaMpesa() {
-    const amount = prompt("Enter donation amount (KES):", "100");
-    if (amount) {
-        const paybill = "123456"; // Replace with actual paybill
-        const account = "ESPADA";
-        window.open(`tel:*234*${paybill}*${amount}%23`);
-    }
-}
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                navMenu.classList.remove('show');
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Enhanced M-Pesa donation function
+        function donateViaMpesa() {
+            const amount = prompt("Enter donation amount (KES):", "500");
+            if (amount && !isNaN(amount)) {
+                // Replace '123456' with your actual paybill number
+                const paybill = "123456"; 
+                const account = "ESPADA";
+                window.open(`tel:*234*${paybill}*${amount}%23`);
+                
+                // Show thank you message
+                setTimeout(() => {
+                    alert(`Thank you for your donation of KES ${amount}! Your support makes a difference.`);
+                }, 1000);
+            } else {
+                alert("Please enter a valid donation amount.");
+            }
+        }
+        
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        function openLightbox(src, caption) {
+            lightbox.style.display = 'block';
+            lightboxImg.src = src;
+            lightboxCaption.textContent = caption;
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Re-enable scrolling
+        }
+        
+        // Close lightbox when clicking outside the content
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+        
+        // Close with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
     </script>
 </body>
 </html>
